@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tytul:</strong>
+  <%= @post.tytul %>
+</p>
+
+<p>
+  <strong>Krotki opis:</strong>
+  <%= @post.krotki_opis %>
+</p>
+
+<p>
+  <strong>Dlugi opis:</strong>
+  <%= @post.dlugi_opis %>
+</p>
+
+<p>
+  <strong>Tagi:</strong>
+  <%= @post.tagi %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

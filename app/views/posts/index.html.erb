@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+<div id="content">
+<% @posts.each do |post| %>
+
+	<div class="post-cover">
+		<%= image_tag post.cover.url %>
+	</div>
+	
+	<div class="post-info">
+		
+		<div class="post-title">
+			<%= post.tytul %>
+		</div>
+		
+		<div class="post-category">
+			Kategoria: Promocje
+		</div>
+		
+		<div class="post-date">
+			Dodano: <%= post.created_at %>
+		</div>
+		
+	</div>
+	
+	<div class="post-share">
+		<img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-128.png" >
+		<img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/twitter-128.png" >
+		<img src="https://cdn2.iconfinder.com/data/icons/ios-7-style-metro-ui-icons/128/Flurry_YouTube_Alt2.png" >
+		<img src="http://www.iconsdb.com/icons/preview/black/instagram-xxl.png" >
+	</div>
+	
+	<div class="post-description">
+		<%= post.dlugi_opis %>
+	</end>
+	
+	<div class="post-tags">
+		<%= post.tagi %>
+	</div>
+	<%= post.krotki_opis %>
+	<%= link_to 'Show', post %>
+	<%= link_to 'Edit', edit_post_path(post) %>
+	<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<br>
+
+<%= link_to 'New Post', new_post_path %>
+</div>

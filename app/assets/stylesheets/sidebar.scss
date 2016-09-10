@@ -1,0 +1,35 @@
+#places {
+background-color:#bdc3c7;
+display:inline-block;
+float:right;
+left:0px;
+width:15%;
+height:27vh;
+min-height:270px;
+min-width:280px;
+border: 2px solid #34495e;
+border-right:0px solid black;
+border-radius: 25px 0px 0px 25px;
+padding-left:10px;
+box-shadow:0 2px 6px 0 rgba(2,2,2,0.47)
+}
+
+#places-title {
+font-size:1.8em;
+color:#34495e;
+text-shadow:1px 1px white;
+}
+
+#places-content {
+color:white;
+list-style-type:none;
+text-shadow:1px 1px black;
+}
+
+.address-city {
+font-size:1.8em;
+}
+
+.address-street {
+font-size:1.1em;
+}

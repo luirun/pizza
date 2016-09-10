@@ -1,0 +1,14 @@
+<div class="logo-img">
+	<img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Jenos_logo.png">
+</div>
+
+<div id="menu-container">
+	<ul class="nav">
+	<li><%= link_to 'Home', root_path %></li>
+	<li><%= link_to 'Blog', {controller: "posts", action: "index"} %></li>
+	<li><%= link_to 'Home', root_path %></li>
+	<li><%= link_to 'Home', root_path %></li>
+	<li><%= link_to 'Home', root_path %></li>
+	<%= render 'layouts/navigation_links' %>
+	</ul>
+</div>

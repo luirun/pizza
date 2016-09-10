@@ -1,0 +1,30 @@
+<div id="content">
+	<p id="notice"><%= notice %></p>
+
+	<p class="title">Dostępne <%= params[:kategoria] %>: </p>
+
+    <% @dishes.each do |dish| %>
+	
+		<div class="pizza" style="background-image:url('<%= dish.icon.url %>');">
+	
+		<div class="pizza-text">
+			<div class="pizza-name">
+				<%= dish.nazwa %>
+			</div>
+		
+			<div class="pizza-ingredients">
+				<%= dish.skladniki %>
+				<%= link_to 'Show', dish %>
+				<%= link_to 'Edit', edit_dish_path(dish) %>
+				<%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' } %>
+			</div>
+		
+		</div>
+	
+	</div>
+
+    <% end %>
+<br>
+
+<%= link_to 'New Dish', new_dish_path %>
+</div>
