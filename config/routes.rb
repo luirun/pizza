@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :sliders
   resources :posts
   resources :dishes
 root 'visitors#index'

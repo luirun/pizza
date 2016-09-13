@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910180958) do
+ActiveRecord::Schema.define(version: 20160913175720) do
 
   create_table "dishes", force: :cascade do |t|
     t.text     "nazwa",             limit: 65535
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(version: 20160910180958) do
     t.string   "cover_content_type", limit: 255
     t.integer  "cover_file_size",    limit: 4
     t.datetime "cover_updated_at"
+  end
+
+  create_table "sliders", force: :cascade do |t|
+    t.text     "tytul",              limit: 65535
+    t.text     "krotki_opis",        limit: 65535
+    t.integer  "artykul",            limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "photo_file_name",    limit: 255
+    t.string   "photo_content_type", limit: 255
+    t.integer  "photo_file_size",    limit: 4
+    t.datetime "photo_updated_at"
   end
 
   create_table "types", force: :cascade do |t|
