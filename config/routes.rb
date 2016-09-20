@@ -2,11 +2,19 @@ Rails.application.routes.draw do
 
   resources :sliders
   resources :posts
+  resources :visitors do
+  	member do
+		get 'polling'
+	end
+end
   resources :dishes
+  
 root 'visitors#index'
 get 'nowa-kategoria' => "dishes#addcategory", :as => :new_type
 post 'dodano-kategorie' => "dishes#newcategory"
 get 'rodzaj' => "dishes#index"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

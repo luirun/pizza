@@ -1,18 +1,43 @@
-<div class="my-slider">
-	<div class="my-slider-box" style="background-image:url('http://www.pizza-express.pl/banners/57a3265498aef.jpg');">
+<% if defined?(locals[:id]) == nil %>
+	<% $usable = @slider[0].id - 1 %>
+<% else %>
+	<% $usable = locals[:id] %>
+<% end %>
+
+<div class="my-slider-box" style="background-image:url('<%= @slider[$usable].photo.url %>');">
 	
 		<div class="my-slider-buttons">
 		
+		<%= link_to polling_visitor_url($usable - 1), remote: true do %>
 			<div class="my-slider-button-left">
 				<img src="http://iconshow.me/media/images/ui/ios7-icons/png/512/chevron-left.png">
 			</div>
-			
+		<% end %>
+		
+		<%= link_to polling_visitor_url($usable + 1), remote: true do %>
 			<div class="my-slider-button-right">
 				<img src="http://image.flaticon.com/icons/svg/60/60758.svg">
 			</div>
+		<% end %>
 		
-
+		<div class="slider-titles">
+		
+				<div class="slider-title">
+					<%= link_to post_url(@slider[$usable].artykul) do %>
+						<div class="link-inside">
+							<%= @slider[$usable].tytul %>
+						</div>
+					<% end %>
+				</div>
 			
+				<div class="slider-subtitle">
+					<%= link_to post_url(@slider[$usable].artykul) do %>
+						<div class="link-inside">
+							<%= @slider[$usable].krotki_opis %>
+						</div>
+					<% end %>
+				</div>
+				
 		</div>
 		
 	</div>

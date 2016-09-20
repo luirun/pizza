@@ -1,5 +1,9 @@
 <div id="main-visitor">
-<%= render "slider" %>
+
+<%= content_tag :div, class: "my-slider", data: {url:polling_visitor_url(9999)} do %>
+	<%= render "slider" %>
+<% end %>
+
 
 <%= render "sidebar" %>
 

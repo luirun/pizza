@@ -1,0 +1,31 @@
+<%# $i is changed every 8 seconds and send as ID parameter, based on it we are changing slider images on page. $d is to make back button work %>
+<% $length = @slider.size - 1 %>
+<% session[:storeid] ||= 0 %>
+
+<% if params[:id].to_i == 9999 %>
+	
+	<% if session[:storeid] >= $length %>
+		<% session[:storeid] = 0 %>
+	<% else %>
+		<% session[:storeid] = session[:storeid] + 1 %>
+	<% end %>
+<% else %>
+	
+	<% if params[:id].to_i < 0 %>
+		<% session[:storeid] = $length %>
+	<% else %>
+	
+		<% if params[:id].to_i > $length %>
+			<% session[:storeid] = 0 %>
+		<% else %>
+			<% session[:storeid] = params[:id].to_i %>
+		<% end %>
+		
+	<% end %>
+	
+<% end %>
+
+$('.my-slider').html('<%= j render 'visitors/slider', :locals => {:id => session[:storeid] } %>')
+$('.my-slider-box').fadeTo(0, 0.0).fadeTo(1000, 1.0);
+$('.my-slider-box').delay(6000).fadeTo(1000, 0.0);
+SliderPoller.poll();	

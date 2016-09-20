@@ -1,24 +1,45 @@
 <p id="notice"><%= notice %></p>
+<div id="content">
 
-<p>
-  <strong>Tytul:</strong>
-  <%= @post.tytul %>
-</p>
+	<div class="post-cover">
+		<%= image_tag @post.cover.url %>
+	</div>
+	
+	<div class="post-info">
+		
+		<div class="post-title">
+			<%= @post.tytul %>
+		</div>
+		
+		<div class="post-category">
+			Kategoria: Promocje
+		</div>
+		
+		<div class="post-date">
+			Dodano: <%= @post.created_at %>
+		</div>
+		
+	</div>
+	
+	<div class="post-share">
+		<img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-128.png" >
+		<img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/twitter-128.png" >
+		<img src="https://cdn2.iconfinder.com/data/icons/ios-7-style-metro-ui-icons/128/Flurry_YouTube_Alt2.png" >
+		<img src="https://5a5a57ff32a328601212-ee0df397c56b146e91fe14be42fa361d.ssl.cf1.rackcdn.com/icon/instagram_logos_glyph/03H5cHNMt-Jni4pe9u+7/glyph-logo_May2016_200.png" >
+	</div>
+	
+	<div class="post-description">
+		<%= @post.dlugi_opis %>
+	</div>
+	
+	<div class="post-tags">
+		Hasztagi: <%= @post.tagi %>
+	</div>
+	Krotki opis[Only in dev mode]: <%= @post.krotki_opis %>
+	<%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+	<%= link_to 'Edit', edit_post_path(@post) %> |
+	<%= link_to 'Back', posts_path %>
 
-<p>
-  <strong>Krotki opis:</strong>
-  <%= @post.krotki_opis %>
-</p>
+<br>
 
-<p>
-  <strong>Dlugi opis:</strong>
-  <%= @post.dlugi_opis %>
-</p>
-
-<p>
-  <strong>Tagi:</strong>
-  <%= @post.tagi %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+</div>
