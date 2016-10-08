@@ -1,10 +1,9 @@
 class DishesController < ApplicationController
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
-
   # GET /dishes
   # GET /dishes.json
   def index
-	@category = Type.where(:rodzaj => params[:kategoria]).first
+	@category = Type.where(:rodzaj => params[:id]).first
     @dishes = Dish.where(:rodzaj => @category.id)
   end
 
@@ -61,8 +60,12 @@ class DishesController < ApplicationController
     end
   end
   
-  def addcategory
+  def add_category
 	@category = Type.new
+  end
+  
+  def edit_category
+	@category = Type.all
   end
 
   def newcategory
@@ -76,6 +79,19 @@ class DishesController < ApplicationController
 			respond_to.json { render json: @category.errors, status: :unprocessable_entity }
 		end
   end
+  
+	def updatecategory
+	@category = Type.where(:rodzaj => params[:type][:rodzaj]).first
+	 respond_to do |format|
+		  if @category.update(type_params)
+			format.html { redirect_to dishes_url(:kategoria => @category.rodzaj), notice: 'Dish was successfully updated.' }
+			format.json { render :show, status: :ok, location: @dish }
+		  else
+			format.html { render :edit }
+			format.json { render json: @dish.errors, status: :unprocessable_entity }
+		  end
+		end
+	end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dish
@@ -88,6 +104,6 @@ class DishesController < ApplicationController
     end
 	
 	def type_params
-      params.require(:type).permit(:rodzaj)
+      params.require(:type).permit(:rodzaj, :visible)
     end
 end

@@ -2,6 +2,9 @@ class VisitorsController < ApplicationController
 
 	def index
 		@slider = Slider.all
+		@box = Box.all
+		@promotions = Post.where(:is_promotion => "y").limit(3)
+		@categories = Type.where(:visible => "y")
 		session.delete(:storeid)
 	end
 	

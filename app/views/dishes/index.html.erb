@@ -1,12 +1,14 @@
 <div id="content">
-	<p id="notice"><%= notice %></p>
 
-	<p class="title">Dostępne <%= params[:kategoria] %>: </p>
-
-    <% @dishes.each do |dish| %>
+	<div class="dish-banner">
+		<p class="title">Dostępne <%= params[:kategoria] %>: </p>
+	</div>
 	
+	<div class="dishes-container">
+    <% @dishes.each do |dish| %>
 		<div class="pizza" style="background-image:url('<%= dish.icon.url %>');">
 	
+			<div class="to-shadow">
 		<div class="pizza-text">
 			<div class="pizza-name">
 				<%= dish.nazwa %>
@@ -20,11 +22,12 @@
 			</div>
 		
 		</div>
+		
+		</div>
 	
 	</div>
-
     <% end %>
-<br>
+	</div>
 
 <%= link_to 'New Dish', new_dish_path %>
 </div>

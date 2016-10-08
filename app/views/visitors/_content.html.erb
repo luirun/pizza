@@ -13,11 +13,9 @@
 			
 			<div class="content-box-field">
 				<ul>
-					<li><%= link_to "Pizze", {controller: "dishes", action: "index", :kategoria => "pizze"} %></li>
-					<li><%= link_to "Sosy", {controller: "dishes", action: "index", :kategoria => "sosy"} %></li>
-					<li><%= link_to "Parówki", {controller: "dishes", action: "index", :kategoria => "parowki"} %></li>
-					<li><%= link_to "Pierogi", {controller: "dishes", action: "index", :kategoria => "pierogi"} %></li>
-					<li><%= link_to "Lody", {controller: "dishes", action: "index", :kategoria => "lody"} %></li>
+					<% @categories.each do |c| %>
+						<li><%= link_to c.rodzaj, dishes_index_url(c.rodzaj) %></li>
+					<% end %>
 				</ul>
 			</div>
 		
@@ -51,9 +49,9 @@
 			
 			<div class="content-box-field">
 				<ul>
-					<li>Tania pizza drogi dowóz!</li>
-					<li>Płacisz więcej! Jesz więcej!</li>
-					<li>Karta kredytowa, pizza gotowa!</li>
+				<% @promotions.each do |p| %>
+					<li><%= link_to p.tytul, post_url(p.id) %></li>
+				<% end %>
 				</ul>
 			</div>
 			

@@ -1,0 +1,31 @@
+<% @category.each do |c| %>
+	<div class="edit_categories">
+		<%= form_for c, url: {controller: "dishes", action: "updatecategory"} do |f| %>
+		  <% if c.errors.any? %>
+			<div id="error_explanation">
+			  <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+			  <ul>
+			  <% @category.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			  <% end %>
+			  </ul>
+			</div>
+		  <% end %>
+
+		  <div class="field">
+			<%= f.label :nazwa %><br>
+			<%= f.text_area :rodzaj %>
+		  </div>
+		  
+			<div class="field">
+				<%= f.label :visible %><br>
+				<%= f.check_box :visible, {}, "y", "n" %>
+			</div>
+		  
+		  <div class="actions">
+			<%= f.submit %>
+		  </div>
+		<% end %>
+	</div>
+<% end %>

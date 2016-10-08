@@ -36,6 +36,10 @@ class SlidersController < ApplicationController
       end
     end
   end
+  
+  def popupform
+  
+  end
 
   # PATCH/PUT /sliders/1
   # PATCH/PUT /sliders/1.json
@@ -44,6 +48,7 @@ class SlidersController < ApplicationController
       if @slider.update(slider_params)
         format.html { redirect_to @slider, notice: 'Slider was successfully updated.' }
         format.json { render :show, status: :ok, location: @slider }
+		format.js   { render :layout => false }
       else
         format.html { render :edit }
         format.json { render json: @slider.errors, status: :unprocessable_entity }

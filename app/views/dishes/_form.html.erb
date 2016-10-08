@@ -23,8 +23,9 @@
   
     <div class="field">
 		<%= f.label :rodzaj %><br>
-		<%= f.collection_select(:rodzaj, Type.select(:rodzaj), :id, :rodzaj) %>
-		<%= link_to "Dodaj nową kategorię", {controller: "dishes", action: "addcategory"} %>
+		<%= f.collection_select(:rodzaj, Type.select(:rodzaj, :id), :id, :rodzaj) %>
+		<%= link_to "Dodaj nową kategorię", {controller: "dishes", action: "add_category"} %>
+		<%= link_to 'Edytuj kategorie', edytuj_kategorie_url %>
 	</div>
 	
 	<div class="field">

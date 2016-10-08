@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   resources :sliders
   resources :posts
   resources :visitors do
@@ -8,10 +9,18 @@ Rails.application.routes.draw do
 	end
 end
   resources :dishes
+  get "dania/:id" => "dishes#index", :as => :dishes_index
+
+  resources :boxes
+  resources :admins
+  
   
 root 'visitors#index'
-get 'nowa-kategoria' => "dishes#addcategory", :as => :new_type
+get 'nowa-kategoria' => "dishes#add_category", :as => :new_type
+get 'edytuj_kategorie' => "dishes#edit_category"
 post 'dodano-kategorie' => "dishes#newcategory"
+patch 'zaaktualizowano-kategorie' => "dishes#updatecategory"
+get 'zaaktualizowano-kategorie' => "dishes#updatecategory"
 get 'rodzaj' => "dishes#index"
 
 

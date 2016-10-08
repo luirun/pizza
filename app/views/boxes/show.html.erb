@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<div id="boxes">
+
+	<div class="box-img" style="background-image:url('<%= @box.cover.url %>');">
+	
+		<div class="box-img-text">
+		
+			<div class="box-img-subtitle">
+				<%= @box.first_title %>
+			</div>
+		
+			<div class="box-img-title">
+				<%= @box.second_title %>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</div>
+
+
+<%= link_to 'Edit', edit_box_path(@box) %> |
+<%= link_to 'Back', boxes_path %>

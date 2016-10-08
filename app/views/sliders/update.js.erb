@@ -1,0 +1,5 @@
+$(document).ready(function() {
+    $(".buttonik").click('ajax:success', function(){
+		$('div#admin-panel-small<%= @slider.id %> .slider-title .link-inside').html("<%= raw escape_javascript(render(:partial => 'sliders/_admin')) %>");	
+    }); 
+});

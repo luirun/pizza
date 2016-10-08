@@ -1,0 +1,28 @@
+<div id="boxes">
+
+    <% @box.each do |box| %>
+
+	<%= link_to post_url(box.artykul) do %>
+		<div class="box-img"  style="background-image:url('<%= box.cover.url %>');">
+		
+			<div class="to-shadow">
+	
+				<div class="box-img-text">
+		
+					<div class="box-img-subtitle">
+						<%= box.first_title %>
+					</div>
+		
+					<div class="box-img-title">
+						<%= box.second_title %>
+					</div>
+				
+				</div>
+			
+			</div>
+		
+	</div>
+<% end %>
+    <% end %>
+
+</div>
