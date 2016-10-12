@@ -1,7 +1,8 @@
-<%= form_for(@box) do |f| %>
+<div class="close" id="<%= @box.id %>"><%= image_tag "http://www.i2symbol.com/images/myspace/symbols/heavy_multiplication_x_u2716_icon_256x256.png" %></div>
+<%= form_for(@box, remote: true) do |f| %>
   <% if @box.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@box.errors.count, "error") %> prohibited this box from being saved:</h2>
+      <h2><%= pluralize(@box.errors.count, "error") %> prohibited this slider from being saved:</h2>
 
       <ul>
       <% @box.errors.full_messages.each do |message| %>
@@ -10,9 +11,7 @@
       </ul>
     </div>
   <% end %>
-	
-	<%= f.hidden_field :prev_url, :value => request.referer %>
-	
+
   <div class="field">
     <%= f.label :first_title %><br>
     <%= f.text_area :first_title %>
@@ -28,21 +27,35 @@
   </div>
   
    <div class="field">
-		<%= f.label :cover %><br>
-		<%= f.file_field :cover %>
-  </div>
-  
-	<div class="field">
-		<%= f.label :position %><br>
-		<%= f.select(:position, [1,2,3,"none"]) %>
+		<%= f.label "Edytuj okładkę tutaj:" %><br>
+		<%= link_to "Edytuj", edit_box_path(@box) %>
   </div>
   
     <div class="field">
 		<%= f.label :published %><br>
-		<%= f.select :published, ["y", "n"] %>
+		<%= f.check_box :published, {}, "y", "n" %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :position %><br>
+		<%= f.select(:position, [1,2,3,"none"]) %>
 	</div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "box-button" %>
   </div>
+  
 <% end %>
+
+<style>
+.close {
+width:25px;
+height:25px;
+float:right;
+display:inline-block;
+}
+.close img {
+width:100%;
+height:100%;
+}
+</style>

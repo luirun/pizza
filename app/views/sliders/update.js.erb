@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    $(".buttonik").click('ajax:success', function(){
-		$('div#admin-panel-small<%= @slider.id %> .slider-title .link-inside').html("<%= raw escape_javascript(render(:partial => 'sliders/_admin')) %>");	
+	$(".buttonik").click('ajax:success', function(){
+		$('div#pop-up.<%= @slider.id %>').fadeOut();
+		$('#admin-panel-small<%= @slider.id %>').replaceWith('<%= escape_javascript(render "sliders/admin") %>');
     }); 
 });

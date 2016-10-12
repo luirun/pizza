@@ -1,0 +1,6 @@
+$(document).ready(function() {
+	$(".box-button").click('ajax:success', function(){
+		$('div#pop-up.<%= @box.id %>').fadeOut();
+		$('#box-img<%= @box.id %>').replaceWith('<%= escape_javascript(render "boxes/admin") %>');
+    }); 
+});

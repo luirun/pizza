@@ -1,4 +1,5 @@
-<%= form_for(@slider, :remote => true) do |f| %>
+<div class="close" id="<%= @slider.id %>"><%= image_tag "http://www.i2symbol.com/images/myspace/symbols/heavy_multiplication_x_u2716_icon_256x256.png" %></div>
+<%= form_for(@slider, :remote => true, :authenticity_token => true) do |f| %>
   <% if @slider.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@slider.errors.count, "error") %> prohibited this slider from being saved:</h2>
@@ -25,11 +26,25 @@
   </div>
   
    <div class="field">
-		<%= f.label :photo %><br>
-		<%= f.file_field :photo %>
+		<%= f.label :photo, "Edytuj zdjęcie tutaj: " %><br>
+		<%= link_to 'Edit', edit_slider_path(@slider), class: "trigger", id: @slider.id, target: "_blank" %>
   </div>
 
   <div class="actions">
     <%= f.submit class: "buttonik" %>
   </div>
 <% end %>
+
+
+<style>
+.close {
+width:25px;
+height:25px;
+float:right;
+display:inline-block;
+}
+.close img {
+width:100%;
+height:100%;
+}
+</style>

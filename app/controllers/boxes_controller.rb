@@ -18,7 +18,7 @@ class BoxesController < ApplicationController
     @box = Box.new(box_params)
     respond_to do |format|
       if @box.save
-        format.html { redirect_to @box, notice: 'Slider was successfully created.' }
+        format.html { redirect_to params[:box][:prev_url], notice: 'Box was successfully created.' }
         format.json { render :show, status: :created, location: @box }
       else
         format.html { render :new }
@@ -32,6 +32,7 @@ class BoxesController < ApplicationController
       if @box.update(box_params)
         format.html { redirect_to @box, notice: 'Slider was successfully updated.' }
         format.json { render :show, status: :ok, location: @box }
+		format.js   { render :layout => false }
       else
         format.html { render :edit }
         format.json { render json: @box.errors, status: :unprocessable_entity }
@@ -44,6 +45,7 @@ class BoxesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sliders_url, notice: 'Slider was successfully destroyed.' }
       format.json { head :no_content }
+	  format.js   { render :layout => false }
     end
   end
 
@@ -55,6 +57,6 @@ class BoxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def box_params
-      params.require(:box).permit(:first_title, :second_title, :artykul, :cover)
+      params.require(:box).permit(:first_title, :second_title, :artykul, :cover, :published, :position)
     end
 end

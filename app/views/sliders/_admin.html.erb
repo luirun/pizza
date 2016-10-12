@@ -1,0 +1,34 @@
+<div class="admin-panel-small" id="admin-panel-small<%= @slider.id %>">
+				<div class="my-slider-box" style="background-image:url('<%= @slider.photo.url %>');">
+				
+					<div class="my-slider-buttons">
+						<%= link_to 'Edit', '#', class: "slider-popup", id: @slider.id, remote: true %>
+						<%= link_to 'Destroy', @slider, method: :delete, data: { confirm: 'Are you sure?' } %>
+					</div>
+					
+					
+					<div id="pop-up" class="<%= @slider.id %>">
+							<%= render "sliders/popup_form" %>
+					</div>
+					
+					<div class="slider-titles">
+					
+						<div class="slider-title">
+							<div class="link-inside">
+								<%= params[:slider][:tytul] %>
+							</div>
+						</div>
+						
+						<div class="slider-subtitle">
+							<div class="link-inside">
+								<%= @slider.krotki_opis %>
+							</div>
+						</div>
+							
+			</div>
+					
+</div>
+
+
+
+

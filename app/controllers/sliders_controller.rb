@@ -25,11 +25,11 @@ class SlidersController < ApplicationController
   # POST /sliders.json
   def create
     @slider = Slider.new(slider_params)
-
     respond_to do |format|
       if @slider.save
-        format.html { redirect_to @slider, notice: 'Slider was successfully created.' }
+        format.html { redirect_to params[:slider][:prev_url], notice: 'Slider was successfully created.' }
         format.json { render :show, status: :created, location: @slider }
+		format.js   { render :layout => false }
       else
         format.html { render :new }
         format.json { render json: @slider.errors, status: :unprocessable_entity }
@@ -63,6 +63,7 @@ class SlidersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sliders_url, notice: 'Slider was successfully destroyed.' }
       format.json { head :no_content }
+	  format.js   { render :layout => false }
     end
   end
 

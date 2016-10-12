@@ -3,52 +3,14 @@
 
 	<div id="slider-controler">
 		
-		Zarządzaj oraz dodawaj elementy do slidera:
-		<%= link_to 'New Slider', new_slider_path %>
-		<% @slider.each do |s| %>
-			<div class="admin-panel-small" id="admin-panel-small<%= s.id %>">
-				<div class="my-slider-box" style="background-image:url('<%= s.photo.url %>');">
-				
-					<div class="my-slider-buttons">
-						<%= link_to 'Show', s %>
-						<%= link_to 'Edit', edit_slider_path(s), class: "trigger", id: s.id %>
-						<%= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %>
-						<p class="asd" id="<%= s.id %>"> ASDASD</p>
-
-					</div>
-					
-					
-					<div id="pop-up" class="<%= s.id %>">
-					<% @slider = s %>
-							<%= render "sliders/popup_form" %>
-					</div>
-					
-					<div class="slider-titles">
-					
-						<div class="slider-title">
-							<div class="link-inside">
-								<%= s.tytul %>
-							</div>
-						</div>
-						
-						<div class="slider-subtitle">
-							<div class="link-inside">
-								<%= s.krotki_opis %>
-							</div>
-						</div>
-							
-					</div>
-					
-				</div>
-				
-			</div>
-			
-		<% end %>
+		<%= render "sliders" %>
 		
 	</div>
 
 	<div id="boxes-controler">
-
+	
+		<%= render "boxes" %>
+	
 	</div>
 	
 	<div id="content-controler">
@@ -59,11 +21,15 @@
 
 <script type="text/javascript">
       $(function() {
-		$('p.asd').click(function() {
+		$('.slider-popup').click(function() {
 		$id = $(this).attr("id");
 		});
-       $( "p.asd" ).on( "click", function() {
+       $( ".slider-popup" ).on( "click", function() {
 			$('div.'+$id).show();
+		});
+		$("div.close").click(function() {
+			$off = $(this).attr("id");
+			$('div#pop-up.'+$off).fadeOut();
 		});
       });
  </script>

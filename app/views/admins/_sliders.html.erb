@@ -1,0 +1,51 @@
+	<div class="header">Zarządzaj oraz dodawaj elementy do slidera: <%= link_to 'New Slider', new_slider_path %></div>
+			
+		<% @slider.each do |s| %>
+			<div class="admin-panel-small" id="admin-panel-small<%= s.id %>">
+				<div class="my-slider-box" style="background-image:url('<%= s.photo.url %>');">
+				
+					<div class="my-slider-buttons">
+						<%= link_to 'Edit', '#', class: "slider-popup", id: s.id, remote: true %>
+						<%= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'delete_slider' %>
+
+					</div>
+					
+					
+					<div id="pop-up" class="<%= s.id %>">
+					<% @slider = s %>
+							<%= render "sliders/popup_form" %>
+					</div>
+					
+					<div class="slider-titles">
+					
+						<div class="slider-title">
+							<div class="link-inside">
+								<%= s.tytul %>
+							</div>
+						</div>
+						
+						<div class="slider-subtitle">
+							<div class="link-inside">
+								<%= s.krotki_opis %>
+							</div>
+						</div>
+							
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		<% end %>
+		
+		
+<script type="text/javascript">
+      $(function() {
+		$('.slider-popup').click(function() {
+		$id = $(this).attr("id");
+		});
+       $( ".slider-popup" ).on( "click", function() {
+			$('div.'+$id).show();
+		});
+      });
+ </script>
