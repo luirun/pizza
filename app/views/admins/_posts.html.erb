@@ -1,0 +1,31 @@
+<div id="posts-controler">
+
+<div id="header">Dodawaj, usuwaj, zarządzaj postami na stronie: <%= link_to 'New Post', new_post_path %></div>
+<% @posts.each do |post| %>
+<div class="post-container">
+	<div class="post-cover">
+		<%= image_tag post.cover.url %>
+	</div>
+	
+	<div class="post-info">
+		
+		<div class="post-title">
+			<%= post.tytul %>
+		</div>
+		
+		<div class="post-category">
+			Kategoria: Promocje
+		</div>
+		
+		<div class="post-date">
+			<%= link_to 'Show', post %></br>
+			<%= link_to 'Edit', edit_post_path(post) %></br>
+			<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+		</div>
+		
+	</div>
+	
+</div>
+<% end %>
+
+</div>

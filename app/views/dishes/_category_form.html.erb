@@ -1,5 +1,3 @@
-<%= render "category_form" %>
-
 <%= form_for @category, url: {controller: "dishes", action: "newcategory"}, html: {multipart: true} do |f| %>
   <% if @category.errors.any? %>
     <div id="error_explanation">

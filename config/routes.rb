@@ -17,7 +17,8 @@ end
   
 root 'visitors#index'
 get 'nowa-kategoria' => "dishes#add_category", :as => :new_type
-get 'edytuj_kategorie' => "dishes#edit_category"
+get 'edytuj_kategorie/:id' => "dishes#edit_category", :as => :edit_category
+delete 'usun_kategorie/:id' => "dishes#deletecategory", :as => :delete_category
 post 'dodano-kategorie' => "dishes#newcategory"
 patch 'zaaktualizowano-kategorie' => "dishes#updatecategory"
 get 'zaaktualizowano-kategorie' => "dishes#updatecategory"

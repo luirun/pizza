@@ -1,35 +1,14 @@
 <div class="content">
 	<H2>Witam w Panelu Administratora!</h2>
-
-	<div id="slider-controler">
 		
-		<%= render "sliders" %>
+		<%= render "controls" %>
 		
-	</div>
-
-	<div id="boxes-controler">
+		<%= render "sliders" %>	
 	
 		<%= render "boxes" %>
-	
-	</div>
-	
-	<div id="content-controler">
 
-	</div>
+		<%= render "posts" %>
+
+		<%= render "dishes" %>
+
 </div>
-				
-
-<script type="text/javascript">
-      $(function() {
-		$('.slider-popup').click(function() {
-		$id = $(this).attr("id");
-		});
-       $( ".slider-popup" ).on( "click", function() {
-			$('div.'+$id).show();
-		});
-		$("div.close").click(function() {
-			$off = $(this).attr("id");
-			$('div#pop-up.'+$off).fadeOut();
-		});
-      });
- </script>

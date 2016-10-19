@@ -1,70 +1,75 @@
-<div class="header">Jak maja wygladac 3 okna pod slajderem? Dodaj nowe: <%= link_to 'New Box', new_box_path %></div>
-<div>Opublikowane</div>
-<div id="boxes">
+<div id="boxes-controler">
 
-    <% @box_published.each do |box| %>
-
-	<%= link_to post_url(box.artykul) do %>
-		<div class="box-img" id="box-img<%= box.id %>"  style="background-image:url('<%= box.cover.url %>');">
-			<div class="to-shadow">
+	<div class="header">Jak maja wygladac 3 okna pod slajderem? Dodaj nowe: <%= link_to 'New Box', new_box_path %></div>
 	
-				<div class="box-img-text">
-					<%= link_to 'Edit', '#', class: "box-popup", id: box.id, remote: true %>
-					<%= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: "delete_box" %>
-					<div class="box-img-subtitle">
-						<%= box.first_title %>
-					</div>
+	<div>Opublikowane</div>
+	
+	<div id="boxes">
+
+		<% @box_published.each do |box| %>
+
+		<%= link_to post_url(box.artykul) do %>
+			<div class="box-img" id="box-img<%= box.id %>"  style="background-image:url('<%= box.cover.url %>');">
+				<div class="to-shadow">
 		
-					<div class="box-img-title">
-						<%= box.second_title %>
+					<div class="box-img-text">
+						<%= link_to 'Edit', '#', class: "box-popup", id: box.id, remote: true %>
+						<%= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: "delete_box" %>
+						<div class="box-img-subtitle">
+							<%= box.first_title %>
+						</div>
+			
+						<div class="box-img-title">
+							<%= box.second_title %>
+						</div>
+					
 					</div>
 				
 				</div>
-			
-			</div>
-			<div id="pop-up" class="<%= box.id %>">
-			<% @box = box %>
-			<%= render "boxes/popup_form" %>
-	</div>
-	</div>
-	<% end %>
-	
-<% end %>
-</div>
-
-<div>Nie widoczne na stronie:</div>
-<div id="boxes">
-
-    <% @box_unpublished.each do |box| %>
-
-	<%= link_to post_url(box.artykul) do %>
-		<div class="box-img" id="box-img<%= box.id %>"  style="background-image:url('<%= box.cover.url %>');">
-			<div class="to-shadow">
-	
-				<div class="box-img-text">
-					<%= link_to 'Edit', '#', class: "box-popup", id: box.id, remote: true %>
-					<%= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: "delete_box" %>
-					<div class="box-img-subtitle">
-						<%= box.first_title %>
-					</div>
+				<div id="pop-up" class="<%= box.id %>">
+				<% @box = box %>
+				<%= render "boxes/popup_form" %>
+		</div>
+		</div>
+		<% end %>
 		
-					<div class="box-img-title">
-						<%= box.second_title %>
+	<% end %>
+	</div>
+
+	<div>Nie widoczne na stronie:</div>
+	<div id="boxes">
+
+		<% @box_unpublished.each do |box| %>
+
+		<%= link_to post_url(box.artykul) do %>
+			<div class="box-img" id="box-img<%= box.id %>"  style="background-image:url('<%= box.cover.url %>');">
+				<div class="to-shadow">
+		
+					<div class="box-img-text">
+						<%= link_to 'Edit', '#', class: "box-popup", id: box.id, remote: true %>
+						<%= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: "delete_box" %>
+						<div class="box-img-subtitle">
+							<%= box.first_title %>
+						</div>
+			
+						<div class="box-img-title">
+							<%= box.second_title %>
+						</div>
+					
 					</div>
 				
 				</div>
-			
-			</div>
-			<div id="pop-up" class="<%= box.id %>">
-			<% @box = box %>
-			<%= render "boxes/popup_form" %>
-	</div>
-	</div>
+				<div id="pop-up" class="<%= box.id %>">
+					<% @box = box %>
+					<%= render "boxes/popup_form" %>
+				</div>
+		</div>
+		<% end %>
+		
 	<% end %>
-	
-<% end %>
-</div>
+	</div>
 
+</div>
 
 <script type="text/javascript">
       $(function() {

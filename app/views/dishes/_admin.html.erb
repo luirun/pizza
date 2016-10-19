@@ -1,0 +1,24 @@
+<div class="pizza" id="pizza<%= @dish.id %>" style="background-image:url('<%= @dish.icon.url %>');">
+		
+				<div class="to-shadow">
+			<div class="pizza-text">
+				<div class="pizza-name">
+					<%= @dish.nazwa %>
+				</div>
+			
+				<div class="pizza-ingredients">
+					<%= @dish.skladniki %>
+					<%= link_to 'Show', @dish %>
+					<%= link_to 'Edit', "#",  id: @dish.id, class: "dish-popup", remote: true %>
+					<%= link_to 'Destroy', @dish, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete_dish", remote: true %>
+				</div>
+			
+			</div>
+			
+			</div>
+			
+			<div id="pop-up" class="dish<%= @dish.id %>">
+				<%= render "dishes/popup_form" %>
+			</div>
+			
+		</div>

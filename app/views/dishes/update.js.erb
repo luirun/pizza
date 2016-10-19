@@ -1,0 +1,6 @@
+$(document).ready(function() {
+	$(".dish-button").click('ajax:success', function(){
+		$('div#pop-up.dish<%= @dish.id %>').fadeOut();
+		$('#pizza<%= @dish.id %>').replaceWith('<%= escape_javascript(render "dishes/admin") %>');
+    }); 
+});

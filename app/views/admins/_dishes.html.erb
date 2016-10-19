@@ -1,0 +1,78 @@
+<div id="dishes-controler">
+	<div class="header">Zarządzaj oraz dodawaj nowe dania: <%= link_to 'New Dish', new_dish_path %></div>
+
+		
+		<div class="dishes-container">
+		<% @dishes.each do |dish| %>
+			<div class="pizza" id="pizza<%= dish.id %>" style="background-image:url('<%= dish.icon.url %>');">
+		
+				<div class="to-shadow">
+			<div class="pizza-text">
+				<div class="pizza-name">
+					<%= dish.nazwa %>
+				</div>
+			
+				<div class="pizza-ingredients">
+					<%= dish.skladniki %>
+					<%= link_to 'Show', dish %>
+					<%= link_to 'Edit', "#",  id: dish.id, class: "dish-popup", remote: true %>
+					<%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete_dish", remote: true %>
+				</div>
+			
+			</div>
+			
+			</div>
+			
+			<div id="pop-up" class="dish<%= dish.id %>">
+				<% @dish = dish %>
+				<%= render "dishes/popup_form" %>
+			</div>
+			
+		</div>
+		
+		<% end %>
+
+	</div>
+
+	<div id="list-categories">
+	<h4>Kategorie Dań:</h4>
+		<% @categories.each do |c| %>
+		<div class="container" id="container<%= c.id %>">
+			<div class="row">
+				<%= c.rodzaj %>
+			</div>
+			<div class="large-2.columns">
+				<% if c.visible == "Y" %>Opublikowane<% else %>Nieopublikowane <% end %>
+			</div>
+			<div class="large-2.columns">
+				<%= link_to "Edytuj", edit_category_path(c.id) %>
+				<%= link_to 'Usuń', delete_category_path(c.id), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: "delete_category" %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<div id="add-category">
+	<h2>Dodaj nową kategorię dań!</h2>
+		<%= render "dishes/category_form" %>
+	</div>
+	
+</div>
+
+
+
+
+
+<script type="text/javascript">
+      $(function() {
+		$('.dish-popup').click(function() {
+		$id = $(this).attr("id");
+		});
+       $( ".dish-popup" ).on( "click", function() {
+			$('div.dish'+$id).show();
+		});
+		$("div.close").click(function() {
+			$off = $(this).attr("id");
+			$('div.dish'+$off).fadeOut();
+		});
+      });
+ </script>

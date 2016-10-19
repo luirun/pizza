@@ -41,8 +41,9 @@ class DishesController < ApplicationController
   def update
     respond_to do |format|
       if @dish.update(dish_params)
-        format.html { redirect_to @dish, notice: 'Dish was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dish }
+        format.html { redirect_to @box, notice: 'Slider was successfully updated.' }
+        format.json { render :show, status: :ok, location: @box }
+		format.js   { render :layout => false }
       else
         format.html { render :edit }
         format.json { render json: @dish.errors, status: :unprocessable_entity }
@@ -57,6 +58,7 @@ class DishesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to dishes_url, notice: 'Dish was successfully destroyed.' }
       format.json { head :no_content }
+	  format.js   { render :layout => false }
     end
   end
   
@@ -65,7 +67,7 @@ class DishesController < ApplicationController
   end
   
   def edit_category
-	@category = Type.all
+	@category = Type.find(params[:id])
   end
 
   def newcategory
@@ -73,7 +75,7 @@ class DishesController < ApplicationController
 		if @category.valid?
 			@category.save
 			flash[:notice] = "Dodano nową kategorię - #{@category.rodzaj}"
-			redirect_to new_type_path
+			redirect_to admins_path
 		else
 			respond_to.html { redirect_to new_type }
 			respond_to.json { render json: @category.errors, status: :unprocessable_entity }
@@ -81,15 +83,25 @@ class DishesController < ApplicationController
   end
   
 	def updatecategory
-	@category = Type.where(:rodzaj => params[:type][:rodzaj]).first
+	@category = Type.find(params[:type][:id])
 	 respond_to do |format|
 		  if @category.update(type_params)
-			format.html { redirect_to dishes_url(:kategoria => @category.rodzaj), notice: 'Dish was successfully updated.' }
+			format.html { redirect_to admins_path, notice: 'Dish was successfully updated.' }
 			format.json { render :show, status: :ok, location: @dish }
 		  else
 			format.html { render :edit }
 			format.json { render json: @dish.errors, status: :unprocessable_entity }
 		  end
+		end
+	end
+	
+	def deletecategory
+		@category = Type.find(params[:id])
+	    @category.destroy
+		respond_to do |format|
+			format.html { redirect_to admins_path, notice: 'Category was successfully destroyed.' }
+			format.json { head :no_content }
+			format.js   { render :layout => false }
 		end
 	end
   private

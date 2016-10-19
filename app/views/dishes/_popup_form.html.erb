@@ -1,4 +1,5 @@
-<%= form_for(@dish) do |f| %>
+<div class="close" id="<%= @dish.id %>"><%= image_tag "http://www.i2symbol.com/images/myspace/symbols/heavy_multiplication_x_u2716_icon_256x256.png" %></div>
+<%= form_for(@dish, remote: true) do |f| %>
   <% if @dish.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@dish.errors.count, "error") %> prohibited this dish from being saved:</h2>
@@ -10,7 +11,7 @@
       </ul>
     </div>
   <% end %>
-
+  
   <div class="field">
     <%= f.label :nazwa %><br>
     <%= f.text_area :nazwa %>
@@ -25,6 +26,7 @@
 		<%= f.label :rodzaj %><br>
 		<%= f.collection_select(:rodzaj, Type.select(:rodzaj, :id), :id, :rodzaj) %>
 		<%= link_to "Dodaj nową kategorię", {controller: "dishes", action: "add_category"} %>
+		<%= link_to 'Edytuj kategorie', edit_category_path(@dish.rodzaj) %>
 	</div>
 	
 	<div class="field">
@@ -32,6 +34,6 @@
 		<%= f.file_field :icon %>
 	</div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "dish-button"%>
   </div>
 <% end %>
